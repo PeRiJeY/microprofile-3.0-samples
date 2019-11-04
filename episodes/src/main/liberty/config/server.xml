@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="${project.name}">
+
+	<featureManager>
+		<feature>microProfile-3.0</feature>
+		<feature>jpa-2.2</feature>
+	</featureManager>
+
+	<httpEndpoint id="defaultHttpEndpoint" httpPort="8801"
+		httpsPort="8901" host="*" />
+
+	<webApplication location="${project.name}.war"
+		contextRoot="/" />
+	<mpMetrics authentication="false" />
+	
+	<dataSource id="jpa-datasource" jndiName="jdbc/jpa-datasource" type="javax.sql.ConnectionPoolDataSource">
+    <jdbcDriver
+        javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+        javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
+        javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+        libraryRef="SharedLibrary_H2"/>
+    <properties
+        URL="jdbc:h2:mem:db"
+        user="sa"
+        password="sa" />
+   </dataSource>
+
+<library id="SharedLibrary_H2">
+    <fileset dir="F:/tmp/" id="Fileset_H2"/>
+</library>
+
+</server>
