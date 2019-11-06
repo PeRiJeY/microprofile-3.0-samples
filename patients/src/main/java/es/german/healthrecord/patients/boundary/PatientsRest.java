@@ -5,9 +5,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.QueryParam;
 
+import es.german.healthrecord.common.exception.EhrException;
+import es.german.healthrecord.common.exception.EhrNotFoundException;
 import es.german.healthrecord.domain.administrative.Patient;
 import es.german.healthrecord.patients.control.PatientsService;
 
@@ -19,13 +20,14 @@ public class PatientsRest {
 
 	@GET
 	@Path("/{id}")
-	public Patient get(@PathParam("id") Long id) {
-		Patient patient = patientService.findById(id);
-		if (patient != null) {
-			return patient;
-		} else {
-			throw new WebApplicationException(Response.Status.NOT_FOUND);
-		}
+	public Patient getById(@PathParam("id") Long id) throws EhrNotFoundException {
+		return patientService.findById(id);
+	}
+	
+	@GET
+	@Path("")
+	public Patient getByNumPaciente(@QueryParam("numPaciente") String numPaciente) throws EhrException {
+		return patientService.findByNumPaciente(numPaciente);
 	}
 
 	@POST

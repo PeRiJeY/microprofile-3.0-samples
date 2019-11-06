@@ -10,6 +10,8 @@ import javax.json.bind.serializer.DeserializationContext;
 import javax.json.bind.serializer.JsonbDeserializer;
 import javax.json.stream.JsonParser;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class JsonDateTimeDeserializer implements JsonbDeserializer<Date> {
 
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD HH:mm");
@@ -18,7 +20,9 @@ public class JsonDateTimeDeserializer implements JsonbDeserializer<Date> {
 	public Date deserialize(JsonParser parser, DeserializationContext ctx, Type rtType) {
 		Date result = null;
 		try {
-			result = dateFormat.parse(parser.getString());
+			if (StringUtils.isNotEmpty(parser.getString())) {				
+				result = dateFormat.parse(parser.getString());
+			}
 		} catch (ParseException e) {
 			throw new JsonbException("Error deserializando fecha", e);
 		}

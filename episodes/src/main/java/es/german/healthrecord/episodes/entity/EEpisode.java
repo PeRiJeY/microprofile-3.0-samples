@@ -18,7 +18,7 @@ import es.german.healthrecord.common.serialize.JsonDateTimeDeserializer;
 @Entity
 @Table(name = "EHR_D_EPISODE")
 @XmlRootElement
-public class Episode {
+public class EEpisode {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

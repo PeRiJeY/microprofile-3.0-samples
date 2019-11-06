@@ -6,8 +6,8 @@
 		<feature>jpa-2.2</feature>
 	</featureManager>
 
-	<httpEndpoint id="defaultHttpEndpoint" httpPort="8801"
-		httpsPort="8901" host="*" />
+	<httpEndpoint id="defaultHttpEndpoint" httpPort="8802"
+		httpsPort="8902" host="*" />
 
 	<webApplication location="${project.name}.war"
 		contextRoot="/" />

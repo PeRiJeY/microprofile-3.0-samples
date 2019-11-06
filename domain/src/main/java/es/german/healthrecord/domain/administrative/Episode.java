@@ -20,7 +20,7 @@ public class Episode {
     @JsonbTypeDeserializer(JsonDateTimeDeserializer.class)
     private Date fechaAlta;
     
-    private String tipoEpisodio;
+    private String tipoEpisode;
     
     private String ufIngreso;
     
@@ -50,12 +50,12 @@ public class Episode {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public String getTipoEpisodio() {
-		return tipoEpisodio;
+	public String getTipoEpisode() {
+		return tipoEpisode;
 	}
 
-	public void setTipoEpisodio(String tipoEpisodio) {
-		this.tipoEpisodio = tipoEpisodio;
+	public void setTipoEpisode(String tipoEpisode) {
+		this.tipoEpisode = tipoEpisode;
 	}
 
 	public String getUfIngreso() {

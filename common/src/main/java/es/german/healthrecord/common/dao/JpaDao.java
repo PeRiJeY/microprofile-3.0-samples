@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import es.german.healthrecord.common.exception.EhrNotFoundException;
+
 public abstract class JpaDao<K, E> implements Dao<K, E> {
 	protected Class<E> entityClass;
 
@@ -26,7 +28,13 @@ public abstract class JpaDao<K, E> implements Dao<K, E> {
 		entityManager.remove(entity);
 	}
 
-	public E findById(K id) {
-		return entityManager.find(entityClass, id);
+	public E findById(K id) throws EhrNotFoundException {
+		E entity = entityManager.find(entityClass, id);
+		
+		if (entity == null) {
+			throw new EhrNotFoundException("Entity " + id + " Not Found"); 
+		}
+		
+		return entity;
 	}
 }
